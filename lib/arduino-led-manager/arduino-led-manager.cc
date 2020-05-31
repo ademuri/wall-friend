@@ -7,3 +7,7 @@ CRGB* ArduinoLedManager::GetLeds() {
 
 void ArduinoLedManager::UpdateLeds() {
 }
+
+uint32_t ArduinoLedManager::GetMillis() {
+  return millis();
+}

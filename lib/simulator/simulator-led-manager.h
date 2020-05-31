@@ -10,6 +10,7 @@ class SimulatorLedManager : public LedManager, public LinearSimulator<LedManager
 
     CRGB* GetLeds() override;
     void UpdateLeds() override;
+    uint32_t GetMillis() override;
 };
 
 #endif  // SIMULATOR_LED_MANAGER_H_
