@@ -7,7 +7,8 @@ class LedManager {
   public:
     static const int kNumLeds = 32;
 
-    CRGB leds[kNumLeds];
+    // Gets the LEDs
+    virtual CRGB* GetLeds() = 0;
 
     // Writes out the LED values.
     virtual void UpdateLeds() = 0;

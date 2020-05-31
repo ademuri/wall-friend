@@ -23,7 +23,8 @@ FetchContent_Declare(fake-fast-led
 FetchContent_MakeAvailable(fake-fast-led)
 
 add_executable(wall-friend-simulator
-  lib/simulator/simulator.cc)
+  lib/simulator/simulator.cc
+  lib/simulator/simulator-led-manager.cc)
 
 target_include_directories(wall-friend-simulator PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib/led-manager>
