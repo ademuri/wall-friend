@@ -38,7 +38,10 @@ bool SimulatorLedManager::InitAudio(int device_id) {
     }
     device_id = audio_device_id;
     SDL_PauseAudioDevice(audio_device_id, 0);
+    return true;
   }
+
+  return false;
 }
 
 void SimulatorLedManager::CloseAudio() {
