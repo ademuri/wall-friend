@@ -82,22 +82,22 @@ SDL_Point SimulatorLedManager::GetInitialPosition() {
   return {0, 0};
 }
 
-void SimulatorLedManager::GraphFft(const uint16_t* fft) {
-  int scale = 3;
+void SimulatorLedManager::GraphFft(const std::vector<uint16_t> fft) {
+  int scale = 1;
   int height = 550;
   int width = 1000;
   if (SDL_GetRendererOutputSize(this->renderer_, &width, &height)) {
     this->LogSDLError("SDL_GetRendererOutputSize");
   }
-  int line_size = width / AudioManager::kFftSize;
+  int line_size = width / fft.size();
   int max_height = height - (this->led_frame_pixels_ + kLedMarginPixels * 3 + line_size * 2);
   height -= line_size * 2;
 
   SDL_SetRenderDrawColor(renderer_, 0x40, 0x40, 0x40, 0xFF);
-  SDL_Rect bottom = {0, height + line_size, line_size * AudioManager::kFftSize, line_size};
+  SDL_Rect bottom = {0, height + line_size, line_size * fft.size(), line_size};
   SDL_RenderFillRect(renderer_, &bottom);
 
-  for (int i = 0; i < AudioManager::kFftSize; i++) {
+  for (int i = 0; i < fft.size(); i++) {
     int val = fft[i] / scale;
     if (val >= max_height) {
       val = max_height;
@@ -115,11 +115,11 @@ bool SimulatorLedManager::EnableAudio() {
 }
 
 void SimulatorLedManager::DrawExtras() {
-  if (fft_ != nullptr) {
+  if (!fft_.empty()) {
     GraphFft(fft_);
   }
 }
 
-void SimulatorLedManager::set_fft(uint16_t* fft) {
+void SimulatorLedManager::set_fft(const std::vector<uint16_t> fft) {
   fft_ = fft;
 }

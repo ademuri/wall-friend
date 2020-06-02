@@ -1,3 +1,4 @@
+#include <vector>
 #include <kissfft.hh>
 
 #include "brain.h"
@@ -24,7 +25,8 @@ int main() {
     brain->Think();
     if (audio_manager.Available()) {
       uint16_t* fft = audio_manager.GetFft();
-      led_manager.set_fft(fft);
+      std::vector<uint16_t> fft_vector(fft, fft + AudioManager::kFftSize);
+      led_manager.set_fft(fft_vector);
 
       for (int i = 0; i < LedManager::kNumLeds; i++) {
         uint32_t sum = 0;

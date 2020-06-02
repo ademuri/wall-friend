@@ -1,6 +1,8 @@
 #ifndef SIMULATOR_LED_MANAGER_H_
 #define SIMULATOR_LED_MANAGER_H_
 
+#include <vector>
+
 #include "led-manager.h"
 #include "linear-simulator.h"
 
@@ -20,17 +22,17 @@ class SimulatorLedManager : public LedManager, public LinearSimulator<LedManager
     SDL_Point GetInitialSize() override;
     SDL_Point GetInitialPosition() override;
 
-    void GraphFft(const uint16_t* fft);
+    void GraphFft(const std::vector<uint16_t> fft);
 
     bool EnableAudio() override;
 
     void DrawExtras() override;
 
-    void set_fft(uint16_t* fft);
+    void set_fft(const std::vector<uint16_t> fft);
 
   private:
     SDL_AudioDeviceID audio_device_id = -1;
-    const uint16_t* fft_ = nullptr;
+    std::vector<uint16_t> fft_;
 };
 
 #endif  // SIMULATOR_LED_MANAGER_H_
