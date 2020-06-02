@@ -21,12 +21,22 @@ int main() {
   const int bin_size = AudioManager::kFftSize / LedManager::kNumLeds;
   const float alpha = 0.5;
 
+  const int beat_fft_size = 16;
+  const int beat_accumulator_max_size = 24;
+  const int low_freq_bands = 2;
+  kissfft<float>* beat_fft = new kissfft<float>(beat_fft_size, /* inverse */ false);
+  float beat_accumulator = 0;
+  int beat_accumulator_size = 0;
+  std::vector<float> beat_buffer;
+
   while (led_manager.Run()) {
     brain->Think();
     if (audio_manager.Available()) {
+      led_manager.set_fft(audio_manager.GetBeatFft());
       uint16_t* fft = audio_manager.GetFft();
+
       std::vector<uint16_t> fft_vector(fft, fft + AudioManager::kFftSize);
-      led_manager.set_fft(fft_vector);
+      //led_manager.set_fft(fft_vector);
 
       for (int i = 0; i < LedManager::kNumLeds; i++) {
         uint32_t sum = 0;

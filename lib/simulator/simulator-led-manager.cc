@@ -83,13 +83,14 @@ SDL_Point SimulatorLedManager::GetInitialPosition() {
 }
 
 void SimulatorLedManager::GraphFft(const std::vector<uint16_t> fft) {
-  int scale = 1;
+  const unsigned long max_line_height = 25;
+  const int scale = 4;
   int height = 550;
   int width = 1000;
   if (SDL_GetRendererOutputSize(this->renderer_, &width, &height)) {
     this->LogSDLError("SDL_GetRendererOutputSize");
   }
-  int line_size = width / fft.size();
+  int line_size = std::min(width / fft.size(), max_line_height);
   int max_height = height - (this->led_frame_pixels_ + kLedMarginPixels * 3 + line_size * 2);
   height -= line_size * 2;
 
