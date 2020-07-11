@@ -1,6 +1,7 @@
 #ifndef BRAIN_H_
 #define BRAIN_H_
 
+#include "audio-manager.h"
 #include "led-manager.h"
 
 // Does the thinking. Contains the application logic, and uses
@@ -8,7 +9,7 @@
 // Arduino and desktop.
 class Brain {
   public:
-    Brain(LedManager* led_manager);
+    Brain(LedManager* led_manager, AudioManager* audio_manager);
 
     // Runs an iteration of the logic. Reads from sensor(s) and
     // updates the LEDs.
@@ -16,6 +17,10 @@ class Brain {
 
   private:
     LedManager *const led_manager_;
+    AudioManager *const audio_manager_;
+
+    uint32_t recent_volume = 0;
+    uint32_t recent_average = 0;
 };
 
 #endif  // BRAIN_H_

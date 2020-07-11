@@ -13,7 +13,7 @@ void AudioCallback(void* userdata, uint8_t* stream, int len) {
 
 int main() {
   SimulatorLedManager led_manager;
-  Brain* brain = new Brain(&led_manager);
+  Brain* brain = new Brain(&led_manager, &audio_manager);
   led_manager.Init();
   led_manager.InitAudio(-1);
 
@@ -30,15 +30,15 @@ int main() {
   std::vector<float> beat_buffer;
 
   while (led_manager.Run()) {
-    brain->Think();
     if (audio_manager.Available()) {
-      led_manager.set_fft(audio_manager.GetBeatFft());
+      brain->Think();
+      //led_manager.set_fft(audio_manager.GetBeatFft());
+
       uint16_t* fft = audio_manager.GetFft();
-
       std::vector<uint16_t> fft_vector(fft, fft + AudioManager::kFftSize);
-      //led_manager.set_fft(fft_vector);
+      led_manager.set_fft(fft_vector);
 
-      for (int i = 0; i < LedManager::kNumLeds; i++) {
+      /*for (int i = 0; i < LedManager::kNumLeds; i++) {
         uint32_t sum = 0;
         for (int j = 0; j < bin_size; j++) {
           sum += fft[i * bin_size + j];
@@ -46,7 +46,7 @@ int main() {
         short_fft[i] = short_fft[i] * alpha + sum * (1 - alpha);
         uint16_t scaled_value = short_fft[i] / 4;
         led_manager.GetLeds()[i] = CHSV(0, scaled_value > 256 ? 255 : 0, scaled_value);
-      }
+      }*/
     }
   }
 

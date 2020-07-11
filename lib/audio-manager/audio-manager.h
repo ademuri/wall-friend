@@ -1,6 +1,8 @@
 #ifndef AUDIO_MANAGER_H_
 #define AUDIO_MANAGER_H_
 
+#include <cstdint>
+
 // Abstraction layer for reading audio data and performing FFTs on it.
 class AudioManager {
   public:
