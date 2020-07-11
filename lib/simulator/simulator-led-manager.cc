@@ -13,7 +13,7 @@ bool SimulatorLedManager::InitAudio(int device_id) {
     // Print audio devices
     int num_devices = SDL_GetNumAudioDevices(SDL_TRUE);
     if (num_devices < 1) {
-      printf("No recording devices found.\n");
+      printf("No recording devices found for driver: %s\n", SDL_GetCurrentAudioDriver());
       return false;
     }
 
