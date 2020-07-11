@@ -34,9 +34,8 @@ int main() {
       brain->Think();
       //led_manager.set_fft(audio_manager.GetBeatFft());
 
-      uint16_t* fft = audio_manager.GetFft();
-      std::vector<uint16_t> fft_vector(fft, fft + AudioManager::kFftSize);
-      led_manager.set_fft(fft_vector);
+      std::vector<uint16_t> fft = audio_manager.GetFft();
+      led_manager.set_fft(fft);
 
       /*for (int i = 0; i < LedManager::kNumLeds; i++) {
         uint32_t sum = 0;

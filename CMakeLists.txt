@@ -33,7 +33,8 @@ add_executable(wall-friend-simulator
   lib/simulator/simulator.cc
   lib/simulator/simulator-audio-manager.cc
   lib/simulator/simulator-led-manager.cc
-  lib/brain/brain.cc)
+  lib/brain/brain.cc
+  lib/debug/debug.cc)
 
 target_include_directories(wall-friend-simulator PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib/led-manager>
@@ -42,6 +43,8 @@ target_include_directories(wall-friend-simulator PUBLIC
     $<INSTALL_INTERFACE:lib/audio-manager>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib/brain>
     $<INSTALL_INTERFACE:lib/brain>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib/debug>
+    $<INSTALL_INTERFACE:lib/debug>
     PRIVATE lib/simulator)
 
 target_link_libraries(wall-friend-simulator

@@ -9,7 +9,7 @@ Brain* brain;
 void setup() {
   audio_manager = new ArduinoAudioManager();
   led_manager = new ArduinoLedManager();
-  brain = new Brain(led_manager);
+  brain = new Brain(led_manager, audio_manager);
 }
 
 void loop() {

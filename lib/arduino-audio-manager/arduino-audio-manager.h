@@ -10,7 +10,7 @@ class ArduinoAudioManager : public AudioManager {
     ArduinoAudioManager();
 
     bool Available() override;
-    uint16_t* GetFft() override;
+    std::vector<uint16_t> GetFft() override;
 
   private:
     AudioInputAnalog adc;

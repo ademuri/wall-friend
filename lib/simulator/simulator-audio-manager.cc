@@ -77,7 +77,7 @@ bool SimulatorAudioManager::Available() {
   return false;
 }
 
-uint16_t* SimulatorAudioManager::GetFft() {
+std::vector<uint16_t> SimulatorAudioManager::GetFft() {
   return fft_;
 }
 

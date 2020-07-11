@@ -14,7 +14,7 @@ class SimulatorAudioManager : public AudioManager {
     void AudioCallback(void* userdata, uint8_t* stream, int len);
 
     bool Available() override;
-    uint16_t* GetFft() override;
+    std::vector<uint16_t> GetFft() override;
     std::vector<uint16_t> GetBeatFft();
     
   private:
@@ -26,7 +26,7 @@ class SimulatorAudioManager : public AudioManager {
     int beat_accumulator_size = 0;
     std::vector<float> beat_buffer;
 
-    uint16_t fft_[kFftSize] = {0};
+    std::vector<uint16_t> fft_ = std::vector<uint16_t>(AudioManager::kFftSize, 0);
     std::vector<uint16_t> beat_fft_;
     bool available_ = false;
 

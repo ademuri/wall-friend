@@ -8,6 +8,6 @@ bool ArduinoAudioManager::Available() {
   return fft.available();
 }
 
-uint16_t* ArduinoAudioManager::GetFft() {
-  return fft.output;
+std::vector<uint16_t> ArduinoAudioManager::GetFft() {
+  return std::vector<uint16_t>(fft.output, fft.output + AudioManager::kFftSize);
 }
