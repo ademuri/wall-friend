@@ -41,6 +41,7 @@ void SimulatorAudioManager::AudioCallback(void* userdata, uint8_t* stream, int l
   }
   low_freq_sum /= low_freq_bands;
 
+  /*
   beat_accumulator += low_freq_sum;
   beat_accumulator_size++;
   if (beat_accumulator_size >= beat_accumulator_max_size) {
@@ -65,6 +66,7 @@ void SimulatorAudioManager::AudioCallback(void* userdata, uint8_t* stream, int l
     
     beat_buffer.clear();
   }
+  */
 
   available_ = true;
 }

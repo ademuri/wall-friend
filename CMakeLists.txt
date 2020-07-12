@@ -11,6 +11,12 @@ include(FetchContent)
 include(fetch)
 include(ExternalProject)
 
+FetchContent_Declare(smart-input-filter
+    GIT_REPOSITORY      https://github.com/ademuri/smart-input-filter.git
+    GIT_TAG             master
+)
+FetchContent_MakeAvailable(smart-input-filter)
+
 FetchContent_Declare(fast-led-simulator
     GIT_REPOSITORY      https://github.com/ademuri/fast-led-simulator.git
     GIT_TAG             master
@@ -48,6 +54,7 @@ target_include_directories(wall-friend-simulator PUBLIC
     PRIVATE lib/simulator)
 
 target_link_libraries(wall-friend-simulator
+  smart-input-filter
   fake-fast-led
   fast-led-simulator
   kissfft)
