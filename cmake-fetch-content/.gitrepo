@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/ademuri/cmake-fetch-content.git
+	branch = master
+	commit = 32aa17f23664b168b2733880b474cafc67a7f7cc
+	parent = 496c56bc20a2080ae0f4ae8418b6cb6512bf7581
+	cmdver = 0.3.1
