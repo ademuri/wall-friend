@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.11)
 project(wall-friend CXX)
 set(CMAKE_CXX_STANDARD 11)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake-fetch-content)
 
 # Generate the file needed for YCM integration
 set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
 include(FetchContent)
-include(fetch)
+include(fetch-content-shim)
 include(ExternalProject)
 
 FetchContent_Declare(smart-input-filter
